@@ -1,0 +1,242 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-12-26T17:08:18.928Z",
+    "end": "2024-12-26T17:08:32.860Z",
+    "duration": 13932,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bcd3b6cd-ca2a-4dec-8237-05f45426d4b3",
+      "title": "",
+      "fullFile": "cypress/e2e/spec.cy.js",
+      "file": "cypress/e2e/spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "28758b94-9a0c-4dd8-9690-5ba6b695071e",
+          "title": "Login Page Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should display the login form",
+              "fullTitle": "Login Page Tests Should display the login form",
+              "timedOut": null,
+              "duration": 2382,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('h2').should('contain.text', 'Login');\ncy.get('input#email').should('exist');\ncy.get('input#password').should('exist');\ncy.get('button[type=\"submit\"]').should('exist').and('not.be.disabled');",
+              "err": {},
+              "uuid": "7758f04c-d223-4269-8f1c-acd7e01ece1d",
+              "parentUUID": "28758b94-9a0c-4dd8-9690-5ba6b695071e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should allow login with correct email and password",
+              "fullTitle": "Login Page Tests Should allow login with correct email and password",
+              "timedOut": null,
+              "duration": 1623,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input#email').type(correctEmail);\ncy.get('input#password').type(correctPassword);\ncy.get('button[type=\"submit\"]').click();\ncy.url().visit(`/`);",
+              "err": {},
+              "uuid": "75e30bab-1438-443d-b3ce-838b0017d45a",
+              "parentUUID": "28758b94-9a0c-4dd8-9690-5ba6b695071e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should disable inputs and button during loading",
+              "fullTitle": "Login Page Tests Should disable inputs and button during loading",
+              "timedOut": null,
+              "duration": 1272,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input#email').type(correctEmail);\ncy.get('input#password').type(correctPassword);\ncy.get('button[type=\"submit\"]').click();\ncy.get('button[type=\"submit\"]').should('contain.text', 'Loading...').and('be.disabled');\ncy.get('input#email').should('be.disabled');\ncy.get('input#password').should('be.disabled');",
+              "err": {},
+              "uuid": "bf41b430-f516-44c3-8cab-db71f1df4ff2",
+              "parentUUID": "28758b94-9a0c-4dd8-9690-5ba6b695071e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7758f04c-d223-4269-8f1c-acd7e01ece1d",
+            "75e30bab-1438-443d-b3ce-838b0017d45a",
+            "bf41b430-f516-44c3-8cab-db71f1df4ff2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5277,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "040e766f-efda-4b9f-9ce1-a85bca68e467",
+          "title": "Blog Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should navigate to the correct plant detail page when \"En savoir plus\" is clicked",
+              "fullTitle": "Blog Page should navigate to the correct plant detail page when \"En savoir plus\" is clicked",
+              "timedOut": null,
+              "duration": 2184,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('En savoir plus').should('be.visible');\ncy.contains('En savoir plus').first().click();\ncy.url().should('match', /\\/plant\\/.+/);",
+              "err": {},
+              "uuid": "bd419819-b97f-4542-8807-50bc394eb798",
+              "parentUUID": "040e766f-efda-4b9f-9ce1-a85bca68e467",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should filter the plants based on the search term",
+              "fullTitle": "Blog Page should filter the plants based on the search term",
+              "timedOut": null,
+              "duration": 2742,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const searchTerm = 'Aloe Vera';\ncy.get('input[type=\"text\"]').type(searchTerm);\ncy.get('.text-xl.font-bold.mb-3').each($plantName => {\n  cy.wrap($plantName).should('include.text', searchTerm);\n});",
+              "err": {},
+              "uuid": "21a4074e-b196-4d75-bd2b-4713f9ddf970",
+              "parentUUID": "040e766f-efda-4b9f-9ce1-a85bca68e467",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bd419819-b97f-4542-8807-50bc394eb798",
+            "21a4074e-b196-4d75-bd2b-4713f9ddf970"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4926,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "deabd14b-55ed-473f-9eb3-141ae8c05e03",
+          "title": "About us Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should navigate to About us Page",
+              "fullTitle": "About us Page should navigate to About us Page",
+              "timedOut": null,
+              "duration": 232,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/about');",
+              "err": {},
+              "uuid": "4f9e1eb0-e81d-4f8f-8b56-4bb6007666f5",
+              "parentUUID": "deabd14b-55ed-473f-9eb3-141ae8c05e03",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4f9e1eb0-e81d-4f8f-8b56-4bb6007666f5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 232,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "outputDir": "coverage",
+        "outputFile": "cypress-report.xml",
+        "overwrite": true,
+        "reportDir": "coverage/cypress/e2e",
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

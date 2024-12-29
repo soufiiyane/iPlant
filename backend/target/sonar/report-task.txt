@@ -1,0 +1,6 @@
+projectKey=iPlant-BackEnd
+serverUrl=http://44.203.248.122:9000
+serverVersion=9.2.4.50792
+dashboardUrl=http://44.203.248.122:9000/dashboard?id=iPlant-BackEnd
+ceTaskId=AZQDkTFi7Adq2Uw0s34I
+ceTaskUrl=http://44.203.248.122:9000/api/ce/task?id=AZQDkTFi7Adq2Uw0s34I

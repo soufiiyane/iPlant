@@ -1,0 +1,16 @@
+com/example/iPlant/Model/MedicinalPlantTest.class
+com/example/iPlant/controller/MedicinalPlantControllerTest.class
+com/example/iPlant/Model/ChatMessageResponseTest.class
+com/example/iPlant/Model/UserDetailsTest.class
+com/example/iPlant/Service/ChatServiceTest.class
+com/example/iPlant/Service/CommentServiceTest.class
+com/example/iPlant/controller/CommentControllerTest.class
+com/example/iPlant/Model/LoginResponseTest.class
+com/example/iPlant/controller/LoginControllerTest.class
+com/example/iPlant/Model/ChatRequestTest.class
+com/example/iPlant/controller/ChatControllerTest.class
+com/example/iPlant/Model/ChatResponseTest.class
+com/example/iPlant/Model/CommentTest.class
+com/example/iPlant/Service/LoginServiceTest.class
+com/example/iPlant/Model/LoginRequestTest.class
+com/example/iPlant/Service/MedicinalPlantServiceTest.class

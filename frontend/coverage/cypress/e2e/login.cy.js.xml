@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+  <file path="cypress/e2e/login.cy.js">
+    <testCase name="Login Page Tests - Should display the login form" duration="2124"/>
+    <testCase name="Login Page Tests - Should allow login with correct email and password" duration="1446"/>
+    <testCase name="Login Page Tests - Should disable inputs and button during loading" duration="1105"/>
+  </file>
+</testExecutions>

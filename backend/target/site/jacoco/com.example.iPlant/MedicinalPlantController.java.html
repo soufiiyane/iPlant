@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MedicinalPlantController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">iPlant Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.example.iPlant</a> &gt; <span class="el_source">MedicinalPlantController.java</span></div><h1>MedicinalPlantController.java</h1><pre class="source lang-java linenums">package com.example.iPlant;
+
+import com.example.iPlant.Model.MedicinalPlant;
+import com.example.iPlant.Service.MedicinalPlantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping(&quot;/api/plants&quot;)
+public class MedicinalPlantController {
+    private final MedicinalPlantService plantService;
+
+    @Autowired
+<span class="fc" id="L18">    public MedicinalPlantController(MedicinalPlantService plantService) {</span>
+<span class="fc" id="L19">        this.plantService = plantService;</span>
+<span class="fc" id="L20">    }</span>
+
+    @GetMapping
+    public ResponseEntity&lt;?&gt; getAllPlants() {
+        try {
+<span class="fc" id="L25">            List&lt;MedicinalPlant&gt; plants = plantService.getAllPlants();</span>
+<span class="fc" id="L26">            return ResponseEntity.ok(plants);</span>
+<span class="fc" id="L27">        } catch (Exception e) {</span>
+<span class="fc" id="L28">            return ResponseEntity</span>
+<span class="fc" id="L29">                    .internalServerError()</span>
+<span class="fc" id="L30">                    .body(&quot;Error fetching plants: &quot; + e.getMessage());</span>
+        }
+    }
+
+    @GetMapping(&quot;/search&quot;)
+    public ResponseEntity&lt;?&gt; searchPlants(
+            @RequestParam String query,
+            @RequestParam String searchType) {
+        try {
+<span class="fc" id="L39">            List&lt;MedicinalPlant&gt; allPlants = plantService.getAllPlants();</span>
+            List&lt;MedicinalPlant&gt; filteredPlants;
+
+<span class="fc bfc" id="L42" title="All 4 branches covered.">            switch (searchType.toLowerCase()) {</span>
+                case &quot;name&quot;:
+<span class="fc" id="L44">                    filteredPlants = allPlants.stream()</span>
+<span class="fc" id="L45">                            .filter(plant -&gt; plant.getName().toLowerCase().contains(query.toLowerCase()))</span>
+<span class="fc" id="L46">                            .collect(Collectors.toList());</span>
+<span class="fc" id="L47">                    break;</span>
+                case &quot;tags&quot;:
+<span class="fc" id="L49">                    filteredPlants = allPlants.stream()</span>
+<span class="fc" id="L50">                            .filter(plant -&gt; plant.getTags().stream()</span>
+<span class="fc" id="L51">                                    .anyMatch(tag -&gt; tag.toLowerCase().contains(query.toLowerCase())))</span>
+<span class="fc" id="L52">                            .collect(Collectors.toList());</span>
+<span class="fc" id="L53">                    break;</span>
+                case &quot;properties&quot;:
+<span class="fc" id="L55">                    filteredPlants = allPlants.stream()</span>
+<span class="fc" id="L56">                            .filter(plant -&gt; plant.getProperties().stream()</span>
+<span class="fc" id="L57">                                    .anyMatch(prop -&gt; prop.toLowerCase().contains(query.toLowerCase())))</span>
+<span class="fc" id="L58">                            .collect(Collectors.toList());</span>
+<span class="fc" id="L59">                    break;</span>
+                default:
+<span class="fc" id="L61">                    return ResponseEntity.badRequest().body(&quot;Invalid search type&quot;);</span>
+            }
+
+<span class="fc" id="L64">            return ResponseEntity.ok(filteredPlants);</span>
+<span class="fc" id="L65">        } catch (Exception e) {</span>
+<span class="fc" id="L66">            return ResponseEntity</span>
+<span class="fc" id="L67">                    .internalServerError()</span>
+<span class="fc" id="L68">                    .body(&quot;Error searching plants: &quot; + e.getMessage());</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+  <file path="cypress/e2e/Contact.cy.js">
+    <testCase name="Login Page Tests - Should display the login form" duration="866"/>
+    <testCase name="Login Page Tests - Should allow login with correct email and password" duration="792"/>
+    <testCase name="Login Page Tests - Should disable inputs and button during loading" duration="827"/>
+    <testCase name="Blog Page - should navigate to the correct plant detail page when &quot;En savoir plus&quot; is clicked" duration="1085"/>
+    <testCase name="Blog Page - should filter the plants based on the search term" duration="1287"/>
+    <testCase name="Contact Page - should navigate to Contact Page" duration="103"/>
+  </file>
+</testExecutions>

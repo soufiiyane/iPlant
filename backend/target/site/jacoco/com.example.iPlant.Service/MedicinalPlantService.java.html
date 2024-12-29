@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MedicinalPlantService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">iPlant Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.example.iPlant.Service</a> &gt; <span class="el_source">MedicinalPlantService.java</span></div><h1>MedicinalPlantService.java</h1><pre class="source lang-java linenums">package com.example.iPlant.Service;
+
+import com.example.iPlant.Model.MedicinalPlant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@Service
+public class MedicinalPlantService {
+    private final RestTemplate restTemplate;
+<span class="fc" id="L19">    private final String API_URL = &quot;https://ssmb5oqxxa.execute-api.us-east-1.amazonaws.com/dev/medicinalPlants&quot;;</span>
+
+    @Autowired
+<span class="fc" id="L22">    public MedicinalPlantService(RestTemplate restTemplate) {</span>
+<span class="fc" id="L23">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L24">    }</span>
+
+    public List&lt;MedicinalPlant&gt; getAllPlants() {
+        try {
+<span class="fc" id="L28">            ResponseEntity&lt;String&gt; response = restTemplate.getForEntity(API_URL, String.class);</span>
+
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            if (response.getStatusCode() == HttpStatus.OK) {</span>
+<span class="fc" id="L31">                ObjectMapper mapper = new ObjectMapper();</span>
+<span class="fc" id="L32">                Map&lt;String, Object&gt; responseBody = mapper.readValue(response.getBody(), Map.class);</span>
+<span class="fc" id="L33">                String body = (String) responseBody.get(&quot;body&quot;);</span>
+<span class="fc" id="L34">                Map&lt;String, Object&gt; bodyMap = mapper.readValue(body, Map.class);</span>
+<span class="fc" id="L35">                List&lt;Map&lt;String, Object&gt;&gt; items = (List&lt;Map&lt;String, Object&gt;&gt;) bodyMap.get(&quot;items&quot;);</span>
+
+<span class="fc" id="L37">                return items.stream()</span>
+<span class="fc" id="L38">                        .map(item -&gt; convertToMedicinalPlant(item))</span>
+<span class="fc" id="L39">                        .collect(Collectors.toList());</span>
+            } else {
+<span class="nc" id="L41">                throw new RuntimeException(&quot;Failed to fetch plants: &quot; + response.getStatusCode());</span>
+            }
+<span class="nc" id="L43">        } catch (Exception e) {</span>
+<span class="nc" id="L44">            throw new RuntimeException(&quot;Error fetching plants: &quot; + e.getMessage());</span>
+        }
+    }
+
+    private MedicinalPlant convertToMedicinalPlant(Map&lt;String, Object&gt; item) {
+<span class="fc" id="L49">        MedicinalPlant plant = new MedicinalPlant();</span>
+<span class="fc" id="L50">        plant.setName((String) item.get(&quot;Name&quot;));</span>
+<span class="fc" id="L51">        plant.setDescription((String) item.get(&quot;Description&quot;));</span>
+<span class="fc" id="L52">        plant.setImageUrl((String) item.get(&quot;ImageS3Url&quot;));</span>
+<span class="fc" id="L53">        plant.setPlantId((String) item.get(&quot;PlantId&quot;));</span>
+
+        // Convert complex structures
+<span class="fc" id="L56">        plant.setProperties(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Properties&quot;)));</span>
+<span class="fc" id="L57">        plant.setUses(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Uses&quot;)));</span>
+<span class="fc" id="L58">        plant.setTags(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Tags&quot;)));</span>
+<span class="fc" id="L59">        plant.setArticles(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Articles&quot;)));</span>
+<span class="fc" id="L60">        plant.setPrecautions(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Precautions&quot;)));</span>
+<span class="fc" id="L61">        plant.setRegion(convertListWithS((List&lt;Map&lt;String, String&gt;&gt;) item.get(&quot;Region&quot;)));</span>
+
+        // Convert comments
+<span class="fc" id="L64">        List&lt;Map&lt;String, String&gt;&gt; comments = convertComments((List&lt;Map&lt;String, Object&gt;&gt;) item.get(&quot;Comments&quot;));</span>
+<span class="fc" id="L65">        plant.setComments(comments);</span>
+
+<span class="fc" id="L67">        return plant;</span>
+    }
+
+    private List&lt;String&gt; convertListWithS(List&lt;Map&lt;String, String&gt;&gt; list) {
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (list == null) return new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L72">        return list.stream()</span>
+<span class="nc" id="L73">                .map(map -&gt; map.get(&quot;S&quot;))</span>
+<span class="nc" id="L74">                .collect(Collectors.toList());</span>
+    }
+
+    private List&lt;Map&lt;String, String&gt;&gt; convertComments(List&lt;Map&lt;String, Object&gt;&gt; comments) {
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (comments == null) return new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L79">        return comments.stream()</span>
+<span class="nc" id="L80">                .map(comment -&gt; {</span>
+<span class="nc" id="L81">                    Map&lt;String, Object&gt; m = (Map&lt;String, Object&gt;) comment.get(&quot;M&quot;);</span>
+<span class="nc" id="L82">                    Map&lt;String, String&gt; convertedComment = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L83">                    convertedComment.put(&quot;text&quot;, getStringValue(m, &quot;Text&quot;));</span>
+<span class="nc" id="L84">                    convertedComment.put(&quot;userId&quot;, getStringValue(m, &quot;UserId&quot;));</span>
+<span class="nc" id="L85">                    convertedComment.put(&quot;FirstName&quot;, getStringValue(m, &quot;FirstName&quot;));</span>
+<span class="nc" id="L86">                    convertedComment.put(&quot;LastName&quot;, getStringValue(m, &quot;LastName&quot;));</span>
+<span class="nc" id="L87">                    convertedComment.put(&quot;UserImageUrl&quot;, getStringValue(m, &quot;UserImageUrl&quot;));</span>
+<span class="nc" id="L88">                    return convertedComment;</span>
+                })
+<span class="nc" id="L90">                .collect(Collectors.toList());</span>
+    }
+
+    private String getStringValue(Map&lt;String, Object&gt; map, String key) {
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        if (map == null || !map.containsKey(key)) return &quot;&quot;;</span>
+<span class="nc" id="L95">        Map&lt;String, String&gt; value = (Map&lt;String, String&gt;) map.get(key);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        return value != null ? value.get(&quot;S&quot;) : &quot;&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

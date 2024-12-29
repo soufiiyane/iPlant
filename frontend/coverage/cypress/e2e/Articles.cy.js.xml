@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+  <file path="cypress/e2e/Articles.cy.js">
+    <testCase name="Blog Page - should navigate to the correct plant detail page when &quot;En savoir plus&quot; is clicked" duration="3814"/>
+    <testCase name="Blog Page - should filter the plants based on the search term" duration="1949"/>
+  </file>
+</testExecutions>

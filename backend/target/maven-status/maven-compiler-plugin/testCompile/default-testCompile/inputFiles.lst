@@ -1,0 +1,16 @@
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/controller/LoginControllerTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Service/ChatServiceTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/MedicinalPlantTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Service/MedicinalPlantServiceTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/controller/CommentControllerTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/ChatMessageResponseTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/ChatRequestTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Service/CommentServiceTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/UserDetailsTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/ChatResponseTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/controller/ChatControllerTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/CommentTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/LoginRequestTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Model/LoginResponseTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/Service/LoginServiceTest.java
+/home/ubuntu/Desktop/iPlant-backend/src/test/java/com/example/iPlant/controller/MedicinalPlantControllerTest.java

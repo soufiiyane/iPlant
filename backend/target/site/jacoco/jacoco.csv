@@ -1,0 +1,20 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+iPlant Maven Webapp,com.example.iPlant.Service,CommentService,0,31,0,0,0,8,0,2,0,2
+iPlant Maven Webapp,com.example.iPlant.Service,MedicinalPlantService,122,162,9,3,20,30,9,6,3,6
+iPlant Maven Webapp,com.example.iPlant.Service,ChatService,27,57,1,1,3,15,1,2,0,2
+iPlant Maven Webapp,com.example.iPlant.Service,LoginService,27,39,1,1,3,10,1,2,0,2
+iPlant Maven Webapp,com.example.iPlant.Model,ChatRequest,0,17,0,0,0,7,0,5,0,5
+iPlant Maven Webapp,com.example.iPlant.Model,LoginRequest,0,10,0,0,0,4,0,3,0,3
+iPlant Maven Webapp,com.example.iPlant.Model,LoginRequest.LoginBody,0,17,0,0,0,7,0,5,0,5
+iPlant Maven Webapp,com.example.iPlant.Model,MedicinalPlant,0,80,0,0,0,34,0,23,0,23
+iPlant Maven Webapp,com.example.iPlant.Model,ChatMessageResponse,0,10,0,0,0,4,0,3,0,3
+iPlant Maven Webapp,com.example.iPlant.Model,LoginResponse,0,17,0,0,0,7,0,5,0,5
+iPlant Maven Webapp,com.example.iPlant.Model,Comment,0,94,0,0,0,20,0,14,0,14
+iPlant Maven Webapp,com.example.iPlant.Model,UserDetails,0,24,0,0,0,10,0,7,0,7
+iPlant Maven Webapp,com.example.iPlant.Model,ChatResponse,0,17,0,0,0,7,0,5,0,5
+iPlant Maven Webapp,com.example.iPlant,Application,5,7,0,0,2,2,1,2,1,2
+iPlant Maven Webapp,com.example.iPlant,LoginController,0,54,2,6,0,19,2,4,0,2
+iPlant Maven Webapp,com.example.iPlant,CommentController,0,77,0,12,0,17,0,9,0,3
+iPlant Maven Webapp,com.example.iPlant,MedicinalPlantController,0,122,0,4,0,31,0,11,0,8
+iPlant Maven Webapp,com.example.iPlant,ChatController,0,51,0,8,0,13,0,6,0,2
+iPlant Maven Webapp,com.example.iPlant.Config,WebConfig,0,49,0,0,0,8,0,2,0,2

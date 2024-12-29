@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testExecutions version="1">
+  <file path="cypress/e2e/register.cy.js">
+    <testCase name="template spec - passes" duration="8252"/>
+    <testCase name="template spec - passes" duration="926"/>
+  </file>
+</testExecutions>
